@@ -1,0 +1,13 @@
+{% extends "study/base.html" %}
+
+{% block title %}Your Collection{% endblock %}
+
+<!-- each flashcard in set -->
+{% block content %}
+    {% for card in cards %}
+        <div class="card">
+            <h4>Question: {{card.question}}</h4>
+            <h4>Answer: {{card.answer}}</h4>
+        </div> 
+    {% endfor %}
+{% endblock %}

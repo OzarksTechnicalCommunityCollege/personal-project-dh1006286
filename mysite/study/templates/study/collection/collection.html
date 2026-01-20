@@ -1,0 +1,14 @@
+{% extends "study/base.html" %}
+
+{% block title %}Your Collection{% endblock %}
+
+<!-- each flashcard in set -->
+{% block content %}
+    {% for set in sets %}
+        <div class="card">
+            <h4><a href="{% url 'study:view_cards' set.id %}">{{set.name}}</a></h4>
+            <h6>{{set.card_amount}}</h6>
+        </div> 
+    {% endfor %}
+{% endblock %}
+
