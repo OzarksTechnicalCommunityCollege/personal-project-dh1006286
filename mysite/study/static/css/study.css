@@ -8,8 +8,22 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width:40%;
+    width:100%;
     padding:0 0 0 30px; 
+    background-image: url("../images/greenBoard.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.set {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    border-style: solid;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgb(209, 206, 204);
 }
 
 .card {
@@ -17,7 +31,27 @@
     justify-content: center; 
     align-items: center;
     border-style: solid;
-    margin: 30px;
+    margin: 20px;
     padding: 20px;
+    background-color: rgb(206, 194, 187);
 }
 
+.card:hover {
+    margin: 20px;
+    padding: 50px 20px;
+}
+
+.collection {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    background-image: url("../images/bookshelvesEmpty.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 90vh;
+}
+
+
+a {
+    color: red;
+}

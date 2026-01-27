@@ -1,13 +1,16 @@
 {% extends "study/base.html" %}
 
-{% block title %}Your Collection{% endblock %}
+{% block title %}{{ set.name }}{% endblock %}
 
-<!-- each flashcard in set -->
 {% block content %}
+    <p>
+        <a href="{% url "study:make_card" set.id %}">Make New Card</a>
+    </p>
+    <!-- Display each card in the set with its question and correct answer -->
     {% for card in cards %}
         <div class="card">
-            <h4>Question: {{card.question}}</h4>
-            <h4>Answer: {{card.answer}}</h4>
+            <h4>Question: {{card.question}} </h4>
+            <h4>Answer: {{card.answer}} </h4>
         </div> 
     {% endfor %}
 {% endblock %}

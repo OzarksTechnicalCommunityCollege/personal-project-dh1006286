@@ -4,3 +4,6 @@
 # Study Game
 This website will make studying more fun and engaging for the average person.
 
+The UI is Done
+
+The form does submit. However, it does not tell you... yet

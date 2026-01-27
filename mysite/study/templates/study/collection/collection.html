@@ -2,13 +2,17 @@
 
 {% block title %}Your Collection{% endblock %}
 
-<!-- each flashcard in set -->
+
 {% block content %}
+    <!-- Display every set you own -->
+    <div class="collection">
     {% for set in sets %}
-        <div class="card">
-            <h4><a href="{% url 'study:view_cards' set.id %}">{{set.name}}</a></h4>
+        <div class="set">
+            <h4><a href="{{ set.get_absolute_url }}">{{set.name}}</a></h4>
             <h6>{{set.card_amount}}</h6>
         </div> 
     {% endfor %}
+    </div>
+    {% include "pagination.html" with page=page_obj %}
 {% endblock %}
 
