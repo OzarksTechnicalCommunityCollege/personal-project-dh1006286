@@ -1,16 +1,37 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Set, Card
-from .forms import MakeCardForm
+from .models import Set
+from .forms import MakeCardForm, MakeSetForm
 from django.views.decorators.http import require_POST
-from django.views.generic import ListView
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from taggit.models import Tag
+
 
 # Display all sets you own
-class StudyListView(ListView):
-    queryset =  Set.can_use.all()
-    context_object_name = 'sets'
-    # will change later
-    paginate_by = 12
-    template_name = 'study/collection/collection.html'
+def view_sets(request, tag_slug=None):
+    view_sets = Set.can_use.all()
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        view_sets = view_sets.filter(tags__in=[tag])
+
+    # Pagination
+    paginator = Paginator(view_sets, 12)
+    page_number = request.GET.get('page', 1)
+    try:
+        sets = paginator.page(page_number)
+    except PageNotAnInteger:
+        sets = paginator.page(1)
+    except EmptyPage:
+        sets = paginator.page(paginator.num_pages)
+    return render(
+        request,
+        'study/collection/collection.html',
+        {
+            'sets': sets,
+            'tag': tag
+        }
+   )
+
 
 # review the flashcards
 def view_cards(request, slug):
@@ -54,3 +75,23 @@ def make_card(request, set_id):
             'form': form
         },
     )
+
+def make_set(request):
+ 
+    if request.method == 'POST':
+        form = MakeSetForm(data=request.POST)
+        if form.is_valid():
+            # unsaved comment
+            set = form.save(commit=False)
+            #save the comment
+            set.save()    
+    else:
+        form = MakeSetForm()
+    return render(
+        request,
+        'study/collection/makeSet.html',
+        {
+            'form': form
+        },
+    )
+

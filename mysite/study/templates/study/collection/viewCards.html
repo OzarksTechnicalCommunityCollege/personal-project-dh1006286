@@ -3,6 +3,7 @@
 {% block title %}{{ set.name }}{% endblock %}
 
 {% block content %}
+    <h4>Tags: {{ set.tags.all|join:", "}}</h4>
     <p>
         <a href="{% url "study:make_card" set.id %}">Make New Card</a>
     </p>

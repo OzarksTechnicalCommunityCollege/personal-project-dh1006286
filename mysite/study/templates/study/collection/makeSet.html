@@ -1,0 +1,17 @@
+{% extends "study/base.html" %}
+ 
+{% block title %}Create New Set{% endblock %}
+
+{% block content %}
+    <div class="outerForm">
+    {% if sent %}
+        <h2>Successfully Made A New Set</h2>
+    {% else %}
+        <form action="{% url "study:make_set" %}" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+    </div>
+{% endblock %}

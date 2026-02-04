@@ -1,5 +1,6 @@
-from django.db import models
+from django.db import models 
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 #Sets
 #take all sets that has more than 5 cards in them
@@ -11,9 +12,10 @@ class CanUseManager(models.Manager):
     
 class Set(models.Model):
     name = models.CharField(max_length=100)
-    card_amount = models.PositiveIntegerField()
+    card_amount = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    tags = TaggableManager()
     slug = models.SlugField(max_length=100, unique_for_date='created')
 
     # Managers
@@ -35,6 +37,7 @@ class Set(models.Model):
     
     def __str__(self):
         return f"Name: {self.name} Amount of Cards: {self.card_amount}"
+    
 
 #Cards
 class Card(models.Model):
