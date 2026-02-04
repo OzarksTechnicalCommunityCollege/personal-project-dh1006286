@@ -371,7 +371,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "13",
-    "object_repr": "Question: What pattern does Django follow? | Answer: MVT (Model–View–Template)",
+    "object_repr": "Question: What pattern does Django follow? | Answer: MVT (Modelï¿½Viewï¿½Template)",
     "action_flag": 1,
     "change_message": "[{\"added\": {}}]"
   }
@@ -868,94 +868,7 @@
     "user_permissions": []
   }
 },
-{
-  "model": "contenttypes.contenttype",
-  "pk": 1,
-  "fields": {
-    "app_label": "admin",
-    "model": "logentry"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 2,
-  "fields": {
-    "app_label": "auth",
-    "model": "group"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 3,
-  "fields": {
-    "app_label": "auth",
-    "model": "permission"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 4,
-  "fields": {
-    "app_label": "auth",
-    "model": "user"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 5,
-  "fields": {
-    "app_label": "contenttypes",
-    "model": "contenttype"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 6,
-  "fields": {
-    "app_label": "sessions",
-    "model": "session"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 7,
-  "fields": {
-    "app_label": "study",
-    "model": "card"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 8,
-  "fields": {
-    "app_label": "study",
-    "model": "set"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 9,
-  "fields": {
-    "app_label": "taggit",
-    "model": "tag"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 10,
-  "fields": {
-    "app_label": "taggit",
-    "model": "taggeditem"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 11,
-  "fields": {
-    "app_label": "sites",
-    "model": "site"
-  }
-},
+
 {
   "model": "sessions.session",
   "pk": "4sdndeme3lxz18cpbknz9f79h4hz3952",
@@ -1172,10 +1085,10 @@
   "pk": 13,
   "fields": {
     "question": "What pattern does Django follow?",
-    "answer": "MVT (Model–View–Template)",
-    "false_answer_1": "MVC (Model–View–Controller)",
-    "false_answer_2": "MVVM (Model–View–ViewModel)",
-    "false_answer_3": "VIP (View–Interactor–Presenter)",
+    "answer": "MVT (Modelï¿½Viewï¿½Template)",
+    "false_answer_1": "MVC (Modelï¿½Viewï¿½Controller)",
+    "false_answer_2": "MVVM (Modelï¿½Viewï¿½ViewModel)",
+    "false_answer_3": "VIP (Viewï¿½Interactorï¿½Presenter)",
     "set": 6
   }
 },

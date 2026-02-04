@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'taggit',
     'study.apps.StudyConfig',
     'django.contrib.sites',
-    'django.contrib.sitemaps'
+    'django.contrib.sitemaps',
+    'django.contrib.postgres'
  
 ]
 
