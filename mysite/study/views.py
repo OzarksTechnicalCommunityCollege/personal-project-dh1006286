@@ -1,12 +1,15 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Set
-from .forms import MakeCardForm, MakeSetForm
+from .forms import MakeCardForm, MakeSetForm, LoginForm, UserRegistrationForm
 from django.views.decorators.http import require_POST
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from taggit.models import Tag
-
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 # Display all sets you own
+@login_required
 def view_sets(request, tag_slug=None):
     view_sets = Set.can_use.all()
     tag = None
@@ -33,6 +36,7 @@ def view_sets(request, tag_slug=None):
    )
 
 
+@login_required
 # review the flashcards
 def view_cards(request, slug):
     selected_set = get_object_or_404(Set, slug=slug)
@@ -47,6 +51,7 @@ def view_cards(request, slug):
         }
     )
 
+@login_required
 # Make a new Card
 def make_card(request, set_id):
     set = get_object_or_404(
@@ -76,6 +81,7 @@ def make_card(request, set_id):
         },
     )
 
+@login_required
 def make_set(request):
  
     if request.method == 'POST':
@@ -95,3 +101,26 @@ def make_set(request):
         },
     )
 
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+
+            new_user.set_password(
+                user_form.cleaned_data['password']
+            )
+
+            new_user.save()
+
+            return render(
+                request,
+                'study/collection/collection.html',
+            )
+    else:
+        user_form = UserRegistrationForm()
+    return render(
+        request,
+        'registration/register.html',
+        {'user_form': user_form}
+    )

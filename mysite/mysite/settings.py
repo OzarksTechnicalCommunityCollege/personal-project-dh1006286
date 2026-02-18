@@ -31,6 +31,10 @@ ALLOWED_HOSTS = []
 SITE_ID = 1
 # Application definition
 
+LOGIN_REDIRECT_URL = 'study:set_collection'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

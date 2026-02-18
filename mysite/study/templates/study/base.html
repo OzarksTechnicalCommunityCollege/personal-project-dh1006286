@@ -5,10 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static "css/study.css" %}">
+    <link rel="stylesheet" href="{% static 'css/study.css' %}">
 </head>
 <body>
-    <div id="content">
+    <div class="header">
+        <h1>Study Conquest</h1>
+        <div class="user">
+            {% if request.user.is_authenticated %}
+                <ul>
+                    <li class="navlink">
+                    <a href="{% url 'study:set_collection' %}">My Collection</a> 
+                    </li>
+                </ul>
+                <p class="navlink">{{ request.user.first_name|default:request.user.username}}</p>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="navlink">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="navlink">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="content background">
         {% block content %}
         {% endblock %}
     </div>
