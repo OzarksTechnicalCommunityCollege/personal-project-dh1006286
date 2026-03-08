@@ -5,8 +5,11 @@
 {% block content %}
     <h4>Tags: {{ set.tags.all|join:", "}}</h4>
     <p>
-        <a href="{% url "study:make_card" set.id %}">Make New Card</a>
+        <a href="{% url 'study:make_card' set.id %}">Make New Card</a>
     </p>
+
+    <a href="{% url 'study:start_game' set.id %}">Play</a>
+
     <!-- Display each card in the set with its question and correct answer -->
     {% for card in cards %}
         <div class="card">

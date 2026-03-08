@@ -8,7 +8,7 @@
         <h2>Successfully Made A New Card</h2>
     {% else %}
         <h2>Making New Card In {{ set.name }} Set</h2>
-        <form action="{% url "study:make_card" set.id %}" method="post">
+        <form action="{% url 'study:make_card' set.id %}" method="post">
             {{ form.as_p }}
             {% csrf_token %}
             <input type="submit" value="Submit">
@@ -16,3 +16,9 @@
     {% endif %}
     </div>
 {% endblock %}
+
+<p>Q</p>
+
+<div id="flashcardGroup">
+    <div id="question">Question: </div>
+</div>

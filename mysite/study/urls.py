@@ -22,4 +22,5 @@ urlpatterns = [
     path('<slug:slug>/', views.view_cards, name='view_cards'),
     path('<int:set_id>/add/', views.make_card, name='make_card'),
     path('<slug:tag_slug>/', views.view_sets, name='set_collection_by_tag'),
+    path('<int:set_id>/game/', views.start_game, name='start_game')
 ]

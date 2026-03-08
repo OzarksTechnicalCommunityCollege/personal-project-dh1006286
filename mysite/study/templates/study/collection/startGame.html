@@ -1,0 +1,19 @@
+{% extends "study/base.html" %}
+{% load static %}
+{% block title %}Game{% endblock %}
+
+{% block content %}
+
+<div class="menu">
+    <div id="question"></div>
+    <div id="cardOptions">
+
+    </div>
+</div>
+    
+    <!-- This is a cool feature that embeds a python list as JSON. 
+     I need this because startGame.js needs to use data from the set  -->
+    {{ cards|json_script:"cards" }}
+
+    <script src="{% static 'js/startGame.js' %}"></script>
+{% endblock %}

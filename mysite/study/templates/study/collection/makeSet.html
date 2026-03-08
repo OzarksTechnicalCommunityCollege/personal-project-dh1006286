@@ -7,7 +7,7 @@
     {% if sent %}
         <h2>Successfully Made A New Set</h2>
     {% else %}
-        <form action="{% url "study:make_set" %}" method="post">
+        <form action="{% url 'study:make_set' %}" method="post">
             {{ form.as_p }}
             {% csrf_token %}
             <input type="submit" value="Submit">

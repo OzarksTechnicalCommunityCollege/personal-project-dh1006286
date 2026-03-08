@@ -58,4 +58,3 @@ class Card(models.Model):
     def __str__(self):
         return f"Question: {self.question} | Answer: {self.answer}"
 
-
