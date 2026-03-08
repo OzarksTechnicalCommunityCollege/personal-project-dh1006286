@@ -4,9 +4,9 @@
 }
 
 .header {
-     background-color: rgb(88, 198, 163);
+    background-color: rgb(88, 198, 163);
     height: 30px;
-    line-height: 30px; 
+    line-height: 30px;
     padding: 0 20px;
 }
 
@@ -19,13 +19,13 @@
     z-index: -50;
 }
 
-.content { 
+.content {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width:100%;
-    padding:0 0 0 30px; 
+    width: 100%;
+    padding: 0 0 0 30px;
 }
 
 .user {
@@ -39,8 +39,8 @@
 }
 
 .set {
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
     border-style: solid;
     margin: 20px;
@@ -49,8 +49,8 @@
 }
 
 .card {
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
     border-style: solid;
     margin: 20px;
@@ -64,8 +64,8 @@
 }
 
 .collection {
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
     background-image: url("../images/bookshelvesEmpty.png");
     background-size: cover;
@@ -76,4 +76,14 @@
 
 a {
     color: red;
+}
+
+.menu {
+    width: 100%;
+    padding-top: 40px;
+}
+
+#questionText {
+    font-size: 30px;
+    text-align: center;
 }

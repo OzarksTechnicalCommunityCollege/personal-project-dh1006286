@@ -5,15 +5,31 @@
 {% block content %}
 
 <div class="menu">
-    <div id="question"></div>
+    <div id="questionContainer">
+        <p id="questionText">nhnbhbb</p>
+    </div>
     <div id="cardOptions">
-
+        <div id="option1Container">
+            <p id="option1Text"></p>
+        </div>
+        
+        <div id="option2Container">
+            <p id="option2Text"></p>
+        </div>
+        
+        <div id="option3Container">
+            <p id="option3Text"></p>
+        </div>
+        
+        <div id="option4Container">
+            <p id="option4Text"></p>
+        </div>
     </div>
 </div>
-    
-    <!-- This is a cool feature that embeds a python list as JSON. 
-     I need this because startGame.js needs to use data from the set  -->
-    {{ cards|json_script:"cards" }}
 
-    <script src="{% static 'js/startGame.js' %}"></script>
+<!-- This is a cool feature that embeds a python list as JSON. 
+     I need this because startGame.js needs to use data from the set  -->
+{{ cards|json_script:"cards" }}
+
+<script src="{% static 'js/startGame.js' %}"></script>
 {% endblock %}
