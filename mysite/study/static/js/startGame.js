@@ -9,6 +9,8 @@ function loadCard(i) {
         question.textContent = "You win!";
         return;
     }
+    
+    // Display current card info
     question.textContent = SetData[i].question;
     option1.textContent = SetData[i].false_answer_1;
     option2.textContent = SetData[i].false_answer_2;
@@ -19,7 +21,9 @@ function loadCard(i) {
 function gameLaunch() {
 
     if (serializeSetData) {
+
         let currentIndex = 0;
+
         question = document.getElementById("questionText")
         option1 = document.getElementById("option1Container");
         option2 = document.getElementById("option2Container");
@@ -33,7 +37,6 @@ function gameLaunch() {
         });
 
         loadCard(currentIndex);
-
     }
     else {
         console.log("Serialization Error");

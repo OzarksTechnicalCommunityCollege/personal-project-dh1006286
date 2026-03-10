@@ -7,13 +7,14 @@ from taggit.models import Tag
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from collections import deque
+
 
 # Display all sets you own
 @login_required
 def view_sets(request, tag_slug=None):
     view_sets = Set.can_use.all()
     tag = None
+    
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
         view_sets = view_sets.filter(tags__in=[tag])
@@ -21,12 +22,14 @@ def view_sets(request, tag_slug=None):
     # Pagination
     paginator = Paginator(view_sets, 12)
     page_number = request.GET.get('page', 1)
+    
     try:
         sets = paginator.page(page_number)
     except PageNotAnInteger:
         sets = paginator.page(1)
     except EmptyPage:
         sets = paginator.page(paginator.num_pages)
+    
     return render(
         request,
         'study/collection/collection.html',
@@ -84,7 +87,6 @@ def make_card(request, set_id):
 
 @login_required
 def make_set(request):
- 
     if request.method == 'POST':
         form = MakeSetForm(data=request.POST)
         if form.is_valid():
@@ -104,7 +106,9 @@ def make_set(request):
 
 def start_game(request, set_id):
     selected_set = get_object_or_404(Set, id=set_id)
-    cards = list(selected_set.cards.values("question", "answer", "false_answer_1", "false_answer_2", "false_answer_3"))
+    cards = list(selected_set.cards.values("question", "answer", 
+                                           "false_answer_1", "false_answer_2", 
+                                           "false_answer_3"))
 
     return render(
         request,
@@ -137,5 +141,7 @@ def register(request):
     return render(
         request,
         'registration/register.html',
-        {'user_form': user_form}
+        {
+            'user_form': user_form
+        }
     )

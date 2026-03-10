@@ -4,9 +4,7 @@ from . import views
 from study.sitemaps import SetSiteMap
 from django.contrib.auth import views as auth_views
 
-sitemaps = {
-    'sets': SetSiteMap,
-}
+sitemaps = {'sets': SetSiteMap,}
 
 app_name = 'study'
 

@@ -4,30 +4,29 @@
 
 
 {% block content %}
-    {% if tag %}
-        <h2>Sets tagged with "{{ tag.name }}" </h2>
-    {% endif %}
+{% if tag %}
+<h2>Sets tagged with "{{ tag.name }}" </h2>
+{% endif %}
 
-    <p>
-        <a href="{% url "study:make_set" %}">Make New Set</a>
-    </p>
-    <!-- Display every set you own -->
-    <div class="collection">
+<p>
+    <a href="{% url " study:make_set" %}">Make New Set</a>
+</p>
+<!-- Display every set you own -->
+<div class="collection">
     {% for set in sets %}
-        <div class="set">
-            <h4><a href="{{ set.get_absolute_url }}">{{set.name}}</a></h4>
-            <h6>{{set.card_amount}}</h6>
-            <h5>
-                Tags: 
-                {% for tag in set.tags.all %}
-                    <a href="{% url "study:set_collection_by_tag" tag.slug %}">
-                    {{ tag.name }}
-                </a>
-                {% endfor %}
-            </h5>
-        </div> 
-    {% endfor %}
+    <div class="set">
+        <h4><a href="{{ set.get_absolute_url }}">{{set.name}}</a></h4>
+        <h6>{{set.card_amount}}</h6>
+        <h5>
+            Tags:
+            {% for tag in set.tags.all %}
+            <a href="{% url " study:set_collection_by_tag" tag.slug %}">
+                {{ tag.name }}
+            </a>
+            {% endfor %}
+        </h5>
     </div>
-    {% include "pagination.html" with page=sets %}
+    {% endfor %}
+</div>
+{% include "pagination.html" with page=sets %}
 {% endblock %}
-
