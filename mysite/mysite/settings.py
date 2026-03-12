@@ -35,6 +35,10 @@ LOGIN_REDIRECT_URL = 'study:set_collection'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
