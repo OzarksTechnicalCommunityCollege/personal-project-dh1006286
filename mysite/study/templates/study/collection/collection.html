@@ -9,7 +9,7 @@
 {% endif %}
 
 <p>
-    <a href="{% url " study:make_set" %}">Make New Set</a>
+    <a href="{% url 'study:make_set' %}">Make New Set</a>
 </p>
 <!-- Display every set you own -->
 <div class="collection">
@@ -20,7 +20,7 @@
         <h5>
             Tags:
             {% for tag in set.tags.all %}
-            <a href="{% url " study:set_collection_by_tag" tag.slug %}">
+            <a href="{% url 'study:set_collection_by_tag' tag.slug %}">
                 {{ tag.name }}
             </a>
             {% endfor %}

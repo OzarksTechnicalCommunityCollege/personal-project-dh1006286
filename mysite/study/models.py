@@ -1,6 +1,7 @@
 from django.db import models 
 from django.urls import reverse
 from taggit.managers import TaggableManager
+from django.conf import settings
 
 #Sets
 #take all sets that has more than 5 cards in them
@@ -27,7 +28,7 @@ class Set(models.Model):
     class Meta:
         ordering = ['name']
    
-    # 
+    
     def get_absolute_url(self):
         return reverse(
             'study:view_cards', 
@@ -57,4 +58,25 @@ class Card(models.Model):
     
     def __str__(self):
         return f"Question: {self.question} | Answer: {self.answer}"
+    
 
+# this is for a future function that allows users to have the same set
+# a user can have a upstream like feature that allows the set to update 
+# when the owner of the set updates it.
+class UserSet(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="users",
+        on_delete=models.CASCADE,
+    )
+    sets = models.ForeignKey(
+        Set,
+        related_name="sets",
+        on_delete=models.CASCADE,
+    )
+    created = models.DateField(auto_now_add=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['-user'])
+        ]
