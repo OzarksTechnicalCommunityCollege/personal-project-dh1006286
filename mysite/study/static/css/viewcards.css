@@ -1,0 +1,133 @@
+/* ===========================
+   VIEWCARDS.CSS
+   viewCards.html
+   =========================== */
+
+/* ── Set Meta Header ── */
+.set-meta-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.set-meta-bar .tag-chip {
+  display: inline-block;
+  padding: 0.22rem 0.65rem;
+  background: rgba(74,144,217,0.1);
+  border: 1px solid rgba(74,144,217,0.25);
+  border-radius: 999px;
+  color: var(--accent-blue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* ── Action Bar ── */
+.viewcards-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+.play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.6rem;
+  background: linear-gradient(135deg, #c9a84c, #e8c96e);
+  color: var(--bg-dark);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all var(--transition);
+  box-shadow: 0 2px 12px rgba(201,168,76,0.25);
+}
+.play-btn::before { content: '▶ '; }
+.play-btn:hover {
+  background: linear-gradient(135deg, #e8c96e, #f5dda0);
+  color: var(--bg-dark);
+  box-shadow: 0 4px 20px rgba(201,168,76,0.45);
+  transform: translateY(-1px);
+}
+
+/* ── Card Grid ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.1rem;
+}
+
+/* ── Individual Card ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.5rem;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 0.85rem;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  position: relative;
+}
+
+.card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Card number badge */
+.card::before {
+  content: attr(data-index);
+  position: absolute;
+  top: 1rem; right: 1rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.card h4 {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+/* Question / Answer labels */
+.card h4:first-of-type {
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.card h4 strong,
+.card h4::first-line {
+  /* Label styling via content approach */
+}
+
+/* Style "Question:" and "Answer:" prefixes */
+.card .card-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+.card .card-label-q { color: var(--accent-teal); }
+.card .card-label-a { color: var(--gold); }
+
+.card .card-text {
+  font-size: 0.93rem;
+  color: var(--text-primary);
+  line-height: 1.55;
+}

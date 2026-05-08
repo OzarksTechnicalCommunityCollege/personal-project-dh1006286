@@ -1,20 +1,38 @@
 {% extends "study/base.html" %}
-
 {% block title %}{{ set.name }}{% endblock %}
-
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/viewcards.css' %}">
+{% endblock %}
 {% block content %}
-<h4>Tags: {{ set.tags.all|join:", "}}</h4>
-<p>
-    <a href="{% url 'study:make_card' set.id %}">Make New Card</a>
-</p>
 
-<a href="{% url 'study:start_game' set.id %}">Play</a>
+<h2 class="page-heading">{{ set.name }}</h2>
 
-<!-- Display each card in the set with its question and correct answer -->
-{% for card in cards %}
-<div class="card">
-    <h4>Question: {{card.question}} </h4>
-    <h4>Answer: {{card.answer}} </h4>
+<div class="set-meta-bar">
+    Tags:&nbsp;
+    {% for tag in set.tags.all %}
+    <span class="tag-chip">{{ tag.name }}</span>
+    {% endfor %}
 </div>
-{% endfor %}
+
+<div class="viewcards-actions">
+    <a href="{% url 'study:start_game' set.id %}" class="play-btn">Play</a>
+    <a href="{% url 'study:make_card' set.id %}" class="btn btn-outline">+ Add Card</a>
+</div>
+
+<div class="cards-grid">
+    {% for card in cards %}
+    <div class="card">
+        <h4>
+            <span class="card-label card-label-q">Question</span>
+            <span class="card-text">{{ card.question }}</span>
+        </h4>
+        <h4>
+            <span class="card-label card-label-a">Answer</span>
+            <span class="card-text">{{ card.answer }}</span>
+        </h4>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}

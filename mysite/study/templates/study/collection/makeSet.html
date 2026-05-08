@@ -1,16 +1,25 @@
 {% extends "study/base.html" %}
-
 {% block title %}Create New Set{% endblock %}
-
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock %}
 {% block content %}
 <div class="outerForm">
     {% if sent %}
-    <h2>Successfully Made A New Set</h2>
+    <div class="success-banner">
+        <h2>Set Created Successfully</h2>
+        <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 0.9rem;">
+            <a href="{% url 'study:make_set' %}" class="btn btn-gold" style="margin-right: 0.75rem;">+ New Set</a>
+            <a href="{% url 'study:set_collection' %}" class="btn btn-outline">My Collection</a>
+        </p>
+    </div>
     {% else %}
+    <h2>Create New Set</h2>
     <form action="{% url 'study:make_set' %}" method="post">
         {{ form.as_p }}
         {% csrf_token %}
-        <input type="submit" value="Submit">
+        <input type="submit" value="Create Set">
     </form>
     {% endif %}
 </div>

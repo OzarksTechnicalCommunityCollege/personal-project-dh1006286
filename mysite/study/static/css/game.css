@@ -1,0 +1,152 @@
+/* ===========================
+   GAME.CSS
+   startgame.html
+   =========================== */
+
+/* ── Game Container ── */
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 1rem 0;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* ── Question Card ── */
+#questionContainer {
+  width: 100%;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2.75rem;
+  text-align: center;
+  position: relative;
+  box-shadow: var(--shadow-md);
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gold glow line at top */
+#questionContainer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 2px;
+}
+
+#questionText {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+/* ── Options Grid ── */
+#cardOptions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* ── Option Cards ── */
+#option1Container,
+#option2Container,
+#option3Container,
+#option4Container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.4rem;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: flex;
+  align-items: center;
+  min-height: 90px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Option letter badge */
+#option1Container::before { content: 'A'; }
+#option2Container::before { content: 'B'; }
+#option3Container::before { content: 'C'; }
+#option4Container::before { content: 'D'; }
+
+#option1Container::before,
+#option2Container::before,
+#option3Container::before,
+#option4Container::before {
+  position: absolute;
+  top: 0.65rem; right: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+#option1Container:hover,
+#option2Container:hover,
+#option3Container:hover,
+#option4Container:hover {
+  border-color: var(--gold-dim);
+  background: var(--bg-card-hover);
+  box-shadow: 0 0 0 2px rgba(201,168,76,0.15), var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+#option1Container:hover::before,
+#option2Container:hover::before,
+#option3Container:hover::before,
+#option4Container:hover::before {
+  color: var(--gold);
+}
+
+/* ── Option Text ── */
+#option1Text,
+#option2Text,
+#option3Text,
+#option4Text {
+  font-family: var(--font-body);
+  font-size: 0.93rem;
+  color: var(--text-primary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ── Correct / Wrong state classes (for startGame.js to use) ── */
+.option-correct {
+  border-color: var(--success) !important;
+  background: rgba(76,175,128,0.12) !important;
+}
+.option-correct::before { color: var(--success) !important; }
+
+.option-wrong {
+  border-color: var(--danger) !important;
+  background: rgba(200,90,90,0.1) !important;
+}
+.option-wrong::before { color: var(--danger) !important; }
+
+/* ── Score / Progress (for JS to insert) ── */
+#scoreDisplay {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+/* Responsive */
+@media (max-width: 560px) {
+  #cardOptions { grid-template-columns: 1fr; }
+  #questionText { font-size: 1.05rem; }
+}

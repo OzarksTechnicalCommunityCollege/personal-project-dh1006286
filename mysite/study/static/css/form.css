@@ -1,0 +1,158 @@
+/* ===========================
+   FORMS.CSS
+   makecard.html & makeset.html
+   =========================== */
+
+/* ── Outer Form Container ── */
+.outerForm {
+  max-width: 580px;
+  margin: 0 auto;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2.75rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative corner accent */
+.outerForm::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 100px; height: 100px;
+  background: radial-gradient(circle at top right, rgba(201,168,76,0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.outerForm h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.06em;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.outerForm h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 48px; height: 2px;
+  background: var(--gold);
+}
+
+/* ── Django form.as_p auto-generated styles ── */
+.outerForm form p {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.4rem;
+}
+
+.outerForm form label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.outerForm form input[type="text"],
+.outerForm form input[type="email"],
+.outerForm form input[type="password"],
+.outerForm form textarea,
+.outerForm form select {
+  width: 100%;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  padding: 0.65rem 0.85rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+.outerForm form input[type="text"]:focus,
+.outerForm form input[type="email"]:focus,
+.outerForm form input[type="password"]:focus,
+.outerForm form textarea:focus,
+.outerForm form select:focus {
+  border-color: var(--gold-dim);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+}
+
+.outerForm form textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Checkbox / multi-select widget styling */
+.outerForm form ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+}
+.outerForm form ul li label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), background var(--transition);
+}
+.outerForm form ul li label:hover {
+  border-color: var(--gold-dim);
+  background: rgba(201,168,76,0.06);
+}
+.outerForm form ul li input[type="checkbox"] {
+  width: auto;
+  accent-color: var(--gold);
+}
+
+/* ── Submit Button ── */
+.outerForm form input[type="submit"] {
+  margin-top: 0.5rem;
+  width: 100%;
+  background: var(--gold);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+.outerForm form input[type="submit"]:hover {
+  background: var(--gold-light);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Error messages from Django */
+.outerForm form .errorlist {
+  list-style: none;
+  margin-top: 0.25rem;
+}
+.outerForm form .errorlist li {
+  font-size: 0.78rem;
+  color: var(--danger);
+  padding: 0.2rem 0;
+}
