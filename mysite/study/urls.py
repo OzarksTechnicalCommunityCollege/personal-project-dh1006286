@@ -8,11 +8,7 @@ sitemaps = {'sets': SetSiteMap,}
 
 app_name = 'study'
 
-urlpatterns = [     
-    # path('login/', auth_views.LoginView.as_view(), name='login'),
-    # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    # path('password_change/', auth_views.PasswordChangeView.as_view, name='password_change'),
-    
+urlpatterns = [         
     path('register/', views.register, name='register'),
     path('addSet/', views.make_set, name='make_set'),
     path('', views.view_sets, name='set_collection'),    
