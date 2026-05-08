@@ -7,6 +7,7 @@ from taggit.models import Tag
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from .setHistory import History
 
 
 # Display all sets you own
@@ -18,6 +19,8 @@ def view_sets(request, tag_slug=None):
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
         view_sets = view_sets.filter(tags__in=[tag])
+
+    history = History(request)
 
     # Pagination
     paginator = Paginator(view_sets, 12)
@@ -35,7 +38,8 @@ def view_sets(request, tag_slug=None):
         'study/collection/collection.html',
         {
             'sets': sets,
-            'tag': tag
+            'tag': tag,
+            'history': history,
         }
    )
 
@@ -46,6 +50,12 @@ def view_cards(request, slug):
     selected_set = get_object_or_404(Set, slug=slug)
     cards = selected_set.cards.all()
     
+    #Save set in history
+    history = History(request)
+    history.SaveHistory(
+        selected_set
+    )
+
     return render(
         request,
         'study/collection/viewCards.html',
@@ -109,7 +119,7 @@ def start_game(request, set_id):
     cards = list(selected_set.cards.values("question", "answer", 
                                            "false_answer_1", "false_answer_2", 
                                            "false_answer_3"))
-
+   
     return render(
         request,
         'study/collection/startGame.html',

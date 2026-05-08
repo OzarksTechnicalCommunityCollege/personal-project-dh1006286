@@ -39,6 +39,8 @@ REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 0
 
+HISTORY_SESSION_ID = 'history'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
