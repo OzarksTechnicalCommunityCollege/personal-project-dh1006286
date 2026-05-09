@@ -114,12 +114,13 @@ def make_set(request):
         },
     )
 
+@login_required
 def start_game(request, set_id):
     selected_set = get_object_or_404(Set, id=set_id)
     cards = list(selected_set.cards.values("question", "answer", 
                                            "false_answer_1", "false_answer_2", 
                                            "false_answer_3"))
-   
+    
     return render(
         request,
         'study/collection/startGame.html',
