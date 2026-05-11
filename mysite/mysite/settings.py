@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'study.apps.StudyConfig',
     'django.contrib.sites',
     'django.contrib.sitemaps',
-    'django.contrib.postgres'
+    'django.contrib.postgres',
+    'API.apps.ApiConfig'
  
 ]
 
