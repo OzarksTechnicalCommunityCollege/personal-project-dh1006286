@@ -13,7 +13,8 @@ from .setHistory import History
 # Display all sets you own
 @login_required
 def view_sets(request, tag_slug=None):
-    view_sets = Set.can_use.all()
+    # prefetch_related prevents N+1 query
+    view_sets = Set.can_use.prefetch_related('tags').all()
     tag = None
     
     if tag_slug:
@@ -32,7 +33,7 @@ def view_sets(request, tag_slug=None):
         sets = paginator.page(1)
     except EmptyPage:
         sets = paginator.page(paginator.num_pages)
-    
+
     return render(
         request,
         'study/collection/collection.html',
@@ -44,8 +45,8 @@ def view_sets(request, tag_slug=None):
    )
 
 
+# Display all cards in a specific set
 @login_required
-# review the flashcards
 def view_cards(request, slug):
     selected_set = get_object_or_404(Set, slug=slug)
     cards = selected_set.cards.all()
@@ -65,8 +66,8 @@ def view_cards(request, slug):
         }
     )
 
-@login_required
 # Make a new Card
+@login_required
 def make_card(request, set_id):
     set = get_object_or_404(
         Set,
@@ -86,6 +87,7 @@ def make_card(request, set_id):
             card.save()    
     else:
         form = MakeCardForm()
+
     return render(
         request,
         'study/collection/makeCard.html',
@@ -95,6 +97,7 @@ def make_card(request, set_id):
         },
     )
 
+# Edit Card Form
 @login_required
 def edit_card(request, card_id, set_id):
     set = get_object_or_404(
@@ -106,8 +109,9 @@ def edit_card(request, card_id, set_id):
         Card,
         id=card_id
     )
+
     if request.method == 'POST':
-        # update card
+        # update set
         form = MakeCardForm(data=request.POST, instance=card)
         if form.is_valid():
             # unsaved comment
@@ -125,6 +129,7 @@ def edit_card(request, card_id, set_id):
             'false_answer_2': card.false_answer_2,
             'false_answer_3': card.false_answer_3,
             })
+        
     return render(
         request,
         'study/collection/editCard.html',
@@ -146,6 +151,7 @@ def make_set(request):
             set.save()    
     else:
         form = MakeSetForm()
+
     return render(
         request,
         'study/collection/makeSet.html',
@@ -156,7 +162,6 @@ def make_set(request):
 
 @login_required
 def edit_set(request, set_id):
-    
     set = get_object_or_404(
         Set,
         id=set_id,
@@ -173,6 +178,7 @@ def edit_set(request, set_id):
         form = MakeSetForm(initial={
             'name': set.name,
             })
+        
     return render(
         request,
         'study/collection/makeSet.html',
@@ -187,8 +193,10 @@ def edit_set(request, set_id):
 def start_game(request, set_id):
     selected_set = get_object_or_404(Set, id=set_id)
     cards = list(selected_set.cards.values("question", "answer", 
-                                           "false_answer_1", "false_answer_2", 
-                                           "false_answer_3"))
+                                           "false_answer_1", 
+                                           "false_answer_2", 
+                                           "false_answer_3",
+                                           ))
     
     return render(
         request,
@@ -218,6 +226,7 @@ def register(request):
             )
     else:
         user_form = UserRegistrationForm()
+
     return render(
         request,
         'registration/register.html',
