@@ -31,13 +31,19 @@ def export_to_csv(modeladmin, request, queryset):
     return response
 export_to_csv.short_description = 'Export to CSV'
 
-
+# turn every word's first letter uppercase
+@admin.action()
+def make_uppercase(modeladmin, request, queryset):
+    for obj in queryset:
+        obj.name = obj.name.title()
+        obj.save()
+    
 @admin.register(Set)
 class SetAdmin(admin.ModelAdmin):
     list_display = ['name', 'card_amount']
     list_filter = ['name', 'card_amount']
     ordering = ['name']
-    actions = [export_to_csv]
+    actions = [export_to_csv, make_uppercase]
 
 @admin.register(Card)
 class CardAdmin(admin.ModelAdmin):
