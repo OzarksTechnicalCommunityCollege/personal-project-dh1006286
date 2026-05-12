@@ -8,6 +8,7 @@
 
 <h2 class="page-heading">{{ set.name }}</h2>
 
+
 <div class="set-meta-bar">
     Tags:&nbsp;
     {% for tag in set.tags.all %}
@@ -17,6 +18,7 @@
 
 <div class="viewcards-actions">
     <a href="{% url 'study:start_game' set.id %}" class="play-btn">Play</a>
+    <a href="{% url 'study:edit_set' set.id %}" class="btn btn-outline">Edit Set</a>
     <a href="{% url 'study:make_card' set.id %}" class="btn btn-outline">+ Add Card</a>
 </div>
 

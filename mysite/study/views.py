@@ -155,6 +155,35 @@ def make_set(request):
     )
 
 @login_required
+def edit_set(request, set_id):
+    
+    set = get_object_or_404(
+        Set,
+        id=set_id,
+    )
+
+    if request.method == 'POST':
+        form = MakeSetForm(data=request.POST, instance=set)
+        if form.is_valid():
+            # unsaved comment
+            set = form.save(commit=False)
+            #save the comment
+            set.save()    
+    else:
+        form = MakeSetForm(initial={
+            'name': set.name,
+            })
+    return render(
+        request,
+        'study/collection/makeSet.html',
+        {
+            'set': set,
+            'form': form
+        },
+    )
+
+
+@login_required
 def start_game(request, set_id):
     selected_set = get_object_or_404(Set, id=set_id)
     cards = list(selected_set.cards.values("question", "answer", 
