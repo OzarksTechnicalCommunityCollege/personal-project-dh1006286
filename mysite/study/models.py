@@ -53,6 +53,9 @@ class Card(models.Model):
         related_name = 'cards'
     )
 
+    class Meta:
+        ordering = ['question']
+
     # managers
     objects = models.Manager()
     
