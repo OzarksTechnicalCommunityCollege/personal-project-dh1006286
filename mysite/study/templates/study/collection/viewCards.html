@@ -31,6 +31,9 @@
             <span class="card-label card-label-a">Answer</span>
             <span class="card-text">{{ card.answer }}</span>
         </h4>
+        <h5>
+            <a href="{% url 'study:edit_card' card.id set.id %}" class="btn btn-outline">Edit Card</a>
+        </h5>
     </div>
     {% endfor %}
 </div>

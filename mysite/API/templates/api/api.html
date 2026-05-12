@@ -1,0 +1,17 @@
+{% extends "study/base.html" %}
+{% block title %}Your Collection{% endblock %}
+{% load static %}
+{% block content %}
+{% for item in data %}
+  
+    <!-- icon -->
+    <img src="{{ item.icon }}" alt="{{ item.name }}">
+    
+    <p>{{ item.name }}</p>
+    <p>Price: {{ item.current.price }} gp</p>
+    <!-- how much the price changed today-->
+    <p>Today: {{ item.today.price }}</p>
+{% endfor %}
+
+
+{% endblock %}

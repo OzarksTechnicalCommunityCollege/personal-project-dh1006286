@@ -1,0 +1,25 @@
+{% extends "study/base.html" %}
+{% block title %}Create New Card{% endblock %}
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock %}
+{% block content %}
+<div class="outerForm">
+    {% if sent %}
+    <div class="success-banner">
+        <h2>Card Created Successfully</h2>
+        <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 0.9rem;">
+            <a href="{{ set.get_absolute_url }}" class="btn btn-outline">View Set</a>
+        </p>
+    </div>
+    {% else %}
+    <h2>Edit Card</h2>
+    <form action="{% url 'study:edit_card' card.id set.id %}" method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="Edit Card">
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

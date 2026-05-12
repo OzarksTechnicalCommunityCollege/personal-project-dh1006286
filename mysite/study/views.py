@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Set
+from .models import Set, Card
 from .forms import MakeCardForm, MakeSetForm, LoginForm, UserRegistrationForm
 from django.views.decorators.http import require_POST
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -91,7 +91,47 @@ def make_card(request, set_id):
         'study/collection/makeCard.html',
         {
             'set': set,
-            'form': form
+            'form': form,
+        },
+    )
+
+@login_required
+def edit_card(request, card_id, set_id):
+    set = get_object_or_404(
+        Set,
+        id=set_id,
+    )
+
+    card = get_object_or_404(
+        Card,
+        id=card_id
+    )
+    if request.method == 'POST':
+        # update card
+        form = MakeCardForm(data=request.POST, instance=card)
+        if form.is_valid():
+            # unsaved comment
+            card = form.save(commit=False)
+            #assing set to the comment
+            card.set = set
+            #save the comment
+            card.save()    
+    else:
+        # Give user a form with predefined fields
+        form = MakeCardForm(initial={
+            'question': card.question, 
+            'answer': card.answer,
+            'false_answer_1': card.false_answer_1,
+            'false_answer_2': card.false_answer_2,
+            'false_answer_3': card.false_answer_3,
+            })
+    return render(
+        request,
+        'study/collection/editCard.html',
+        {
+            'set': set,
+            'card': card,
+            'form': form,
         },
     )
 
@@ -114,12 +154,13 @@ def make_set(request):
         },
     )
 
+@login_required
 def start_game(request, set_id):
     selected_set = get_object_or_404(Set, id=set_id)
     cards = list(selected_set.cards.values("question", "answer", 
                                            "false_answer_1", "false_answer_2", 
                                            "false_answer_3"))
-   
+    
     return render(
         request,
         'study/collection/startGame.html',
