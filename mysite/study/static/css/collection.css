@@ -143,3 +143,63 @@
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
 }
+
+/* ── LAST VIEWED HISTORY DROPDOWN ── */
+ 
+/* ── LAST VIEWED HISTORY DROPDOWN ── */
+
+.history-row {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+    margin-bottom: 2rem;
+}
+
+label[for="history"] {
+    font-family: 'Cinzel', serif;
+    font-size: .76rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+}
+
+select#history {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    padding: .5rem 2.6rem .5rem 1rem;
+    min-width: 200px;
+
+    background-color: var(--bg3);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a7530' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right .85rem center;
+
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+
+    cursor: pointer;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+select#history:hover {
+    border-color: var(--gold-dk);
+}
+
+select#history:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,.15);
+}
+
+select#history option {
+    background: var(--bg2);
+    color: var(--text);
+}

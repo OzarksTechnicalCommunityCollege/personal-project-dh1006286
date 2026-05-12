@@ -16,13 +16,14 @@
     <h2 class="page-heading">My Collection</h2>
     
     <!-- Cutomer's Set History-->
+   <div class="history-row">
     <label for="history">Last Viewed Sets:</label>
-    <select  name="history" id="history">
-        {% for item in history %}
-            <option value="{{item.set_id}}">{{item.name}}</option>
-        {% endfor %}
-    </select>
-
+        <select class="btn" name="history" id="history">
+            {% for item in history %}
+                <option value="{{item.set_id}}">{{item.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
     <a href="{% url 'study:make_set' %}" class="btn btn-gold">+ New Set</a>
 </div>
  
