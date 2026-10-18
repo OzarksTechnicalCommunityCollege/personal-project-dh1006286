@@ -29,15 +29,17 @@
  
 <div class="collection">
     {% for set in sets %}
-    <div class="set">
-        <h4><a href="{{ set.get_absolute_url }}">{{ set.name }}</a></h4>
-        <h6>{{ set.card_amount }} cards</h6>
-        <h5>
-            {% for t in set.tags.all %}
-                <p>{{ t.name }}</p>
-            {% endfor %}
-        </h5>
-    </div>
+    <a href="{{ set.get_absolute_url }}">
+         <div class="set">
+            <h4>{{ set.name }}</h4>
+            <h6>{{ set.card_amount }} cards</h6>
+            <h5>
+                {% for t in set.tags.all %}
+                    <p>{{ t.name }}</p>
+                {% endfor %}
+            </h5>
+        </div>
+    </a>
     {% empty %}
     <div class="empty-collection">
         <p>No sets yet. Create your first set to get started!</p>
